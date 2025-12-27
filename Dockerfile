@@ -17,9 +17,8 @@ WORKDIR /app
 
 COPY --from=builder /app/myapp .
 
-# Copy required directories and files
-# Note: COPY automatically creates destination directories
-COPY --from=builder /app/firebase/ ./firebase/
+# Copy required files and directories
+# Note: firebase directory doesn't exist in cruds-main, so we skip it
 COPY --from=builder /app/casbin/ ./casbin/
 COPY --from=builder /app/doc/ ./doc/
 COPY --from=builder /app/app.log ./
