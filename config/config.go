@@ -62,8 +62,8 @@ func Load() *Config {
 			PDB_PASSWORD: cast.ToString(coalesce("PDB_PASSWORD", "3333")),
 		},
 		Server: ServerConfig{
-			CRUD_SERVICE: cast.ToString(coalesce("CRUD_SERVICE", ":1234")),
-			CRUD_SERVER:  cast.ToString(coalesce("CRUD_SERVER", ":1234")),
+			CRUD_SERVICE: getPort("CRUD_SERVICE", "50051"),
+			CRUD_SERVER:  getPort("CRUD_SERVER", "8090"),
 		},
 		Mongo: MongoDBConfig{
 			MDB_ADDRESS: cast.ToString(coalesce("MDB_ADDRESS", "mongodb://localhost:27017")),
@@ -84,4 +84,24 @@ func coalesce(key string, value interface{}) interface{} {
 		return val
 	}
 	return value
+}
+
+// getPort returns the port with ":" prefix, checking PORT env var first (Railway compatibility)
+func getPort(envKey string, defaultPort string) string {
+	// Railway sets PORT environment variable
+	if port := os.Getenv("PORT"); port != "" {
+		return ":" + port
+	}
+	// Check for custom env var
+	if port := os.Getenv(envKey); port != "" {
+		if port[0] != ':' {
+			return ":" + port
+		}
+		return port
+	}
+	// Return default with ":"
+	if defaultPort[0] != ':' {
+		return ":" + defaultPort
+	}
+	return defaultPort
 }

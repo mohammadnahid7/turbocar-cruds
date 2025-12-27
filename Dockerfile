@@ -16,12 +16,14 @@ FROM alpine:latest
 WORKDIR /app
 
 COPY --from=builder /app/myapp .
-COPY --from=builder /app/firebase/wegugin-cars-notifications-firebase-adminsdk-fbsvc-0016bd1639.json ./firebase/
-COPY --from=builder /app/casbin/model.conf ./casbin/
-COPY --from=builder /app/casbin/policy.csv ./casbin/
-COPY --from=builder /app/doc/swagger/index.html ./doc/swagger/
-COPY --from=builder /app/doc/swagger/swagger_docs.swagger.json ./doc/swagger/
+
+# Copy required directories and files
+# Note: COPY automatically creates destination directories
+COPY --from=builder /app/firebase/ ./firebase/
+COPY --from=builder /app/casbin/ ./casbin/
+COPY --from=builder /app/doc/ ./doc/
 COPY --from=builder /app/app.log ./
+
 # Note: .env file is not copied - Railway uses environment variables directly
 
 EXPOSE 8090
