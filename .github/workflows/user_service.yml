@@ -1,0 +1,45 @@
+name: API
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        run: go mod download
+
+      - name: Build
+        run: go build -v ./...
+
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            # Check if the cruds directory exists
+            if [ -d "cruds" ]; then
+              echo "Repository exists. Pulling latest changes..."
+              cd cruds
+              git pull origin main
+            else
+              echo "Repository does not exist. Cloning repository..."
+              git clone git@github.com:WeguginCars/cruds.git
+              cd cruds
+            fi
+
+            # Stop and remove existing Docker containers
+            sudo docker compose down || true
+
+            # Build and start Docker containers
+            sudo docker compose up -d --build

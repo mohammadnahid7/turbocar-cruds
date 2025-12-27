@@ -1,0 +1,112 @@
+2025/12/27 12:45:21 gRPC server running on:50052
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /v1/*any                  --> main.runGatewayServer.WrapH.func4 (3 handlers)
+[GIN-debug] POST   /v1/*any                  --> main.runGatewayServer.WrapH.func4 (3 handlers)
+[GIN-debug] PUT    /v1/*any                  --> main.runGatewayServer.WrapH.func4 (3 handlers)
+[GIN-debug] PATCH  /v1/*any                  --> main.runGatewayServer.WrapH.func4 (3 handlers)
+[GIN-debug] HEAD   /v1/*any                  --> main.runGatewayServer.WrapH.func4 (3 handlers)
+[GIN-debug] OPTIONS /v1/*any                  --> main.runGatewayServer.WrapH.func4 (3 handlers)
+[GIN-debug] DELETE /v1/*any                  --> main.runGatewayServer.WrapH.func4 (3 handlers)
+[GIN-debug] CONNECT /v1/*any                  --> main.runGatewayServer.WrapH.func4 (3 handlers)
+[GIN-debug] TRACE  /v1/*any                  --> main.runGatewayServer.WrapH.func4 (3 handlers)
+[GIN-debug] GET    /swagger-ui/*filepath     --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+[GIN-debug] HEAD   /swagger-ui/*filepath     --> github.com/gin-gonic/gin.(*RouterGroup).createStaticHandler.func1 (3 handlers)
+2025/12/27 12:45:23 HTTP gateway running on :8091
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :8091
+[GIN] 2025/12/27 - 12:45:42 | 200 |    2.578046ms |             ::1 | GET      "/swagger-ui/"
+[GIN] 2025/12/27 - 12:46:22 | 404 |         536ns |             ::1 | GET      "/swagger/index.html"
+[GIN] 2025/12/27 - 12:46:23 | 404 |         916ns |             ::1 | GET      "/favicon.ico"
+[GIN] 2025/12/27 - 12:46:25 | 404 |       1.364µs |             ::1 | GET      "/swagger/index.html"
+[GIN] 2025/12/27 - 12:46:26 | 404 |       1.178µs |             ::1 | GET      "/swagger/index.html"
+[GIN] 2025/12/27 - 12:46:30 | 200 |    4.548959ms |             ::1 | GET      "/swagger-ui/"
+[GIN] 2025/12/27 - 12:46:31 | 200 |    1.916038ms |             ::1 | GET      "/swagger-ui/swagger_docs.swagger.json"
+[GIN] 2025/12/27 - 12:46:49 | 200 |     305.548µs |             ::1 | GET      "/swagger-ui/"
+[GIN] 2025/12/27 - 12:46:50 | 200 |     679.317µs |             ::1 | GET      "/swagger-ui/swagger_docs.swagger.json"
+[GIN] 2025/12/27 - 12:47:12 | 500 |   59.945382ms |             ::1 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 12:47:20 | 500 |    1.037734ms |             ::1 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 12:47:21 | 500 |     624.965µs |             ::1 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 12:47:22 | 500 |    1.043783ms |             ::1 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 12:47:41 | 500 |    4.181901ms |             ::1 | GET      "/v1/cars?limit=10"
+[GIN] 2025/12/27 - 12:47:56 | 500 |    1.457452ms |             ::1 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 12:49:56 | 200 |   21.844159ms |             ::1 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 12:49:57 | 200 |    1.275713ms |             ::1 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 12:50:07 | 200 |    7.087275ms |             ::1 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 12:50:08 | 200 |    2.424761ms |             ::1 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 12:50:25 | 200 |   21.683091ms |             ::1 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 12:51:32 | 200 |   20.021748ms |    192.168.0.41 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 12:51:32 | 200 |     595.086µs |    192.168.0.41 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 12:51:32 | 200 |    7.034675ms |    192.168.0.41 | GET      "/v1/saved_cars/f0afe594-a567-4934-9783-fe653641c221"
+[GIN] 2025/12/27 - 12:51:38 | 200 |     644.479µs |    192.168.0.41 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 12:51:51 | 200 |     609.878µs |    192.168.0.41 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 12:51:51 | 200 |     432.624µs |    192.168.0.41 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 12:51:51 | 200 |    1.280395ms |    192.168.0.41 | GET      "/v1/saved_cars/f0afe594-a567-4934-9783-fe653641c221"
+[GIN] 2025/12/27 - 12:52:01 | 200 |    3.739785ms |    192.168.0.41 | GET      "/v1/notifications/unread/f0afe594-a567-4934-9783-fe653641c221"
+[GIN] 2025/12/27 - 12:52:06 | 200 |    5.709621ms |    192.168.0.41 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 12:52:06 | 200 |   28.394325ms |    192.168.0.41 | GET      "/v1/saved_cars/f0afe594-a567-4934-9783-fe653641c221"
+[GIN] 2025/12/27 - 12:52:06 | 200 |   34.147967ms |    192.168.0.41 | GET      "/v1/cars"
+/v1/cars POST
+user /v1/cars POST
+[GIN] 2025/12/27 - 12:52:53 | 500 |   42.641145ms |    192.168.0.41 | POST     "/v1/cars"
+/v1/cars POST
+user /v1/cars POST
+[GIN] 2025/12/27 - 12:53:13 | 500 |   12.034923ms |    192.168.0.41 | POST     "/v1/cars"
+/v1/cars POST
+user /v1/cars POST
+[GIN] 2025/12/27 - 12:53:14 | 500 |    2.993013ms |    192.168.0.41 | POST     "/v1/cars"
+[GIN] 2025/12/27 - 12:53:44 | 200 |    6.294269ms |    192.168.0.41 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 12:53:44 | 200 |    6.215263ms |    192.168.0.41 | GET      "/v1/saved_cars/f0afe594-a567-4934-9783-fe653641c221"
+[GIN] 2025/12/27 - 12:53:44 | 200 |    7.247653ms |    192.168.0.41 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 12:53:47 | 200 |     977.876µs |    192.168.0.41 | GET      "/v1/cars"
+/v1/cars POST
+user /v1/cars POST
+[GIN] 2025/12/27 - 12:56:47 | 200 |   39.325651ms |    192.168.0.41 | POST     "/v1/cars"
+[GIN] 2025/12/27 - 13:10:03 | 200 |   32.503672ms |             ::1 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 13:12:16 | 200 |   28.996446ms |             ::1 | GET      "/v1/cars/1434d00f-3786-42de-9608-066b30113ec3"
+/v1/cars POST
+user /v1/cars POST
+[GIN] 2025/12/27 - 13:13:54 | 500 |   61.828818ms |    192.168.0.41 | POST     "/v1/cars"
+[GIN] 2025/12/27 - 13:14:10 | 200 |     4.29411ms |             ::1 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 13:14:14 | 200 |     959.525µs |             ::1 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 13:18:21 | 200 |    7.351845ms |    192.168.0.41 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 13:18:21 | 200 |    33.12004ms |    192.168.0.41 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 13:18:21 | 200 |    5.747934ms |    192.168.0.41 | GET      "/v1/saved_cars/f0afe594-a567-4934-9783-fe653641c221"
+[GIN] 2025/12/27 - 13:18:36 | 200 |   30.617623ms |    192.168.0.41 | GET      "/v1/comments/1434d00f-3786-42de-9608-066b30113ec3?car_id=1434d00f-3786-42de-9608-066b30113ec3"
+[GIN] 2025/12/27 - 13:18:36 | 200 |   30.622569ms |    192.168.0.41 | GET      "/v1/cars/1434d00f-3786-42de-9608-066b30113ec3"
+[GIN] 2025/12/27 - 13:18:37 | 200 |    1.899136ms |    192.168.0.41 | GET      "/v1/comments/1434d00f-3786-42de-9608-066b30113ec3?car_id=1434d00f-3786-42de-9608-066b30113ec3"
+[GIN] 2025/12/27 - 13:18:55 | 200 |    2.007639ms |    192.168.0.41 | GET      "/v1/saved_cars/f0afe594-a567-4934-9783-fe653641c221"
+[GIN] 2025/12/27 - 13:18:55 | 200 |    1.936983ms |    192.168.0.41 | GET      "/v1/cars?user_id=f0afe594-a567-4934-9783-fe653641c221"
+[GIN] 2025/12/27 - 13:19:05 | 200 |   36.302226ms |    192.168.0.41 | GET      "/v1/saved_cars/f0afe594-a567-4934-9783-fe653641c221"
+[GIN] 2025/12/27 - 13:19:31 | 200 |   28.635486ms |    192.168.0.41 | GET      "/v1/cars/1434d00f-3786-42de-9608-066b30113ec3"
+[GIN] 2025/12/27 - 13:19:31 | 200 |    28.44166ms |    192.168.0.41 | GET      "/v1/comments/1434d00f-3786-42de-9608-066b30113ec3?car_id=1434d00f-3786-42de-9608-066b30113ec3"
+[GIN] 2025/12/27 - 13:19:44 | 200 |    9.190177ms |    192.168.0.41 | GET      "/v1/saved_cars/f0afe594-a567-4934-9783-fe653641c221"
+[GIN] 2025/12/27 - 13:19:44 | 200 |    9.390926ms |    192.168.0.41 | GET      "/v1/cars?user_id=f0afe594-a567-4934-9783-fe653641c221"
+[GIN] 2025/12/27 - 13:20:28 | 200 |   23.636541ms |    192.168.0.41 | GET      "/v1/saved_cars/f0afe594-a567-4934-9783-fe653641c221"
+[GIN] 2025/12/27 - 13:20:28 | 200 |   24.863005ms |    192.168.0.41 | GET      "/v1/cars?user_id=f0afe594-a567-4934-9783-fe653641c221"
+[GIN] 2025/12/27 - 13:20:57 | 200 |     609.296µs |    192.168.0.41 | GET      "/v1/saved_cars/f0afe594-a567-4934-9783-fe653641c221"
+[GIN] 2025/12/27 - 13:20:59 | 200 |    2.098252ms |    192.168.0.41 | GET      "/v1/saved_cars/f0afe594-a567-4934-9783-fe653641c221"
+[GIN] 2025/12/27 - 13:21:00 | 200 |    9.400438ms |    192.168.0.41 | GET      "/v1/cars?user_id=f0afe594-a567-4934-9783-fe653641c221"
+/v1/saved_cars POST
+user /v1/saved_cars POST
+[GIN] 2025/12/27 - 13:21:03 | 200 |   37.074128ms |    192.168.0.41 | POST     "/v1/saved_cars"
+[GIN] 2025/12/27 - 13:21:03 | 200 |    2.181708ms |    192.168.0.41 | GET      "/v1/saved_cars/f0afe594-a567-4934-9783-fe653641c221"
+[GIN] 2025/12/27 - 13:21:05 | 200 |    1.413364ms |    192.168.0.41 | GET      "/v1/saved_cars/f0afe594-a567-4934-9783-fe653641c221"
+[GIN] 2025/12/27 - 13:21:08 | 200 |    8.679032ms |    192.168.0.41 | GET      "/v1/saved_cars/f0afe594-a567-4934-9783-fe653641c221"
+/v1/cars POST
+user /v1/cars POST
+[GIN] 2025/12/27 - 13:21:45 | 200 |   10.271443ms |    192.168.0.41 | POST     "/v1/cars"
+[GIN] 2025/12/27 - 13:21:56 | 200 |     3.21085ms |             ::1 | GET      "/v1/cars"
+[GIN] 2025/12/27 - 13:22:18 | 200 |    9.086496ms |    192.168.0.41 | GET      "/v1/saved_cars/f0afe594-a567-4934-9783-fe653641c221"
+[GIN] 2025/12/27 - 13:22:18 | 200 |    9.120328ms |    192.168.0.41 | GET      "/v1/cars?user_id=f0afe594-a567-4934-9783-fe653641c221"
+[GIN] 2025/12/27 - 13:22:23 | 200 |    1.548461ms |    192.168.0.41 | GET      "/v1/saved_cars/f0afe594-a567-4934-9783-fe653641c221"
+[GIN] 2025/12/27 - 13:22:32 | 200 |     775.795µs |    192.168.0.41 | GET      "/v1/saved_cars/f0afe594-a567-4934-9783-fe653641c221"
+/v1/saved_cars/1434d00f-3786-42de-9608-066b30113ec3 DELETE
+user /v1/saved_cars/1434d00f-3786-42de-9608-066b30113ec3 DELETE
+[GIN] 2025/12/27 - 13:22:35 | 200 |    17.87746ms |    192.168.0.41 | DELETE   "/v1/saved_cars/1434d00f-3786-42de-9608-066b30113ec3"
+[GIN] 2025/12/27 - 13:22:39 | 200 |    1.306429ms |    192.168.0.41 | GET      "/v1/saved_cars/f0afe594-a567-4934-9783-fe653641c221"

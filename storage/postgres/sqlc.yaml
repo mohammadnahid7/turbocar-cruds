@@ -1,0 +1,46 @@
+version: "2"
+
+overrides:
+    go:
+        overrides:
+            - go_type: "string"
+              db_type: "uuid"
+            - db_type: "pg_catalog.timestamp"
+              engine: "postgresql"
+              nullable: true
+              go_type:
+                  import: "gopkg.in/guregu/null.v4/zero"
+                  package: "zero"
+                  type: "Time"
+            - db_type: "pg_catalog.timestamp"
+              engine: "postgresql"
+              nullable: false
+              go_type:
+                  import: "time"
+                  type: "Time"
+            - db_type: "pg_catalog.varchar"
+              nullable: true
+              go_type:
+                  import: "gopkg.in/guregu/null.v4/zero"
+                  type: "String"
+                  package: "zero"
+            - db_type: "text"
+              nullable: true
+              go_type:
+                  import: "gopkg.in/guregu/null.v4/zero"
+                  type: "String"
+                  package: "zero"
+
+sql:
+    - engine: "postgresql"
+      queries: "queries/"
+      database:
+          uri: "postgresql://postgres:password@localhost:5432/wegugin_cars?sslmode=disable"
+      gen:
+          go:
+              package: "sqlc"
+              out: "sqlc"
+              sql_package: "pgx/v5"
+              emit_interface: true
+              emit_json_tags: true
+              emit_prepared_queries: true

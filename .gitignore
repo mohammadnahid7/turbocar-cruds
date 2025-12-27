@@ -1,0 +1,6 @@
+firebase/*.json
+*.json
+.env
+.env.*
+firebase/*.json
+firebase/*.json
