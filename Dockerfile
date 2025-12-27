@@ -6,7 +6,8 @@ COPY . .
 
 RUN go mod download
 
-COPY .env .
+# Note: .env file is not needed - Railway uses environment variables directly
+# The app will use env vars from Railway, godotenv.Load will just log if .env is missing
 
 RUN CGO_ENABLED=0 GOOS=linux go build -C ./cmd -a -installsuffix cgo -o ./../myapp .
 
@@ -21,7 +22,7 @@ COPY --from=builder /app/casbin/policy.csv ./casbin/
 COPY --from=builder /app/doc/swagger/index.html ./doc/swagger/
 COPY --from=builder /app/doc/swagger/swagger_docs.swagger.json ./doc/swagger/
 COPY --from=builder /app/app.log ./
-COPY --from=builder /app/.env .
+# Note: .env file is not copied - Railway uses environment variables directly
 
 EXPOSE 8090
 
