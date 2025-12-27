@@ -1,6 +1,5 @@
 firebase/*.json
 *.json
+!doc/swagger/*.json
 .env
 .env.*
-firebase/*.json
-firebase/*.json

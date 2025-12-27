@@ -1,0 +1,1466 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "CRUD Service API",
+    "description": "API for user management",
+    "version": "1.0",
+    "contact": {
+      "name": "CRUD Service",
+      "url": "https://github.com/yourusername/project",
+      "email": "your-email@example.com"
+    }
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/cars": {
+      "get": {
+        "summary": "GET CARS",
+        "description": "GET CARS",
+        "operationId": "CrudsService_ListCars",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsListCarsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "price_order",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "min_price",
+            "description": "Minimum price filter (optional)",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "max_price",
+            "description": "Maximum price filter (optional)",
+            "in": "query",
+            "required": false,
+            "type": "number",
+            "format": "double"
+          },
+          {
+            "name": "user_id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CARS"
+        ]
+      },
+      "post": {
+        "summary": "CREATE CARS",
+        "description": "CREATE CARS",
+        "operationId": "CrudsService_CreateCar",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsCar"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/crudsCreateCarRequest"
+            }
+          }
+        ],
+        "tags": [
+          "CARS"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/cars/search": {
+      "get": {
+        "summary": "It will search car by model or make",
+        "description": "It will search car by model or make",
+        "operationId": "CrudsService_SearchCar",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsListCarsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "CARS"
+        ]
+      }
+    },
+    "/v1/cars/{id}": {
+      "get": {
+        "summary": "GET CAR BY ID",
+        "description": "GET CAR BY ID",
+        "operationId": "CrudsService_GetCarById",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsCar"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CARS"
+        ]
+      },
+      "delete": {
+        "summary": "DELETE CARS",
+        "description": "DELETE CARS",
+        "operationId": "CrudsService_DeleteCar",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CARS"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "put": {
+        "summary": "UPDATE CARS",
+        "description": "UPDATE CARS",
+        "operationId": "CrudsService_UpdateCar",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CrudsServiceUpdateCarBody"
+            }
+          }
+        ],
+        "tags": [
+          "CARS"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/cars/{id}/review_count_increment": {
+      "put": {
+        "summary": "It will increase CAR'S review count",
+        "description": "It will increase CAR'S review count",
+        "operationId": "CrudsService_IncrementCarReviewCount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "CARS"
+        ]
+      }
+    },
+    "/v1/comments": {
+      "post": {
+        "summary": "Create Comment",
+        "description": "Create Comment",
+        "operationId": "CrudsService_CreateComment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsComment"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/crudsCreateCommentRequest"
+            }
+          }
+        ],
+        "tags": [
+          "COMMENTS"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/comments/car/{car_id}": {
+      "delete": {
+        "summary": "Delete Comments By Car Id",
+        "description": "Delete Comments By Car Id",
+        "operationId": "CrudsService_DeleteCommentsByCarId",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "car_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "COMMENTS"
+        ]
+      }
+    },
+    "/v1/comments/{car_id}": {
+      "get": {
+        "summary": "Get Comments By Car",
+        "description": "Get Comments By Car",
+        "operationId": "CrudsService_GetCommentsByCar",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsListCommentsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "car_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "COMMENTS"
+        ]
+      }
+    },
+    "/v1/comments/{id}": {
+      "delete": {
+        "summary": "Delete Comment",
+        "description": "Delete Comment",
+        "operationId": "CrudsService_DeleteComment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "COMMENTS"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      },
+      "put": {
+        "summary": "Update Comment",
+        "description": "Update Comment",
+        "operationId": "CrudsService_UpdateComment",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CrudsServiceUpdateCommentBody"
+            }
+          }
+        ],
+        "tags": [
+          "COMMENTS"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/notifications": {
+      "post": {
+        "summary": "Create Notification",
+        "description": "Create Notification",
+        "operationId": "CrudsService_CreateNotification",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/crudsCreateNotificationRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NOTIFICATION"
+        ]
+      }
+    },
+    "/v1/notifications/unread/{user_id}": {
+      "get": {
+        "summary": "Get Unread Notifications",
+        "description": "Get Unread Notifications",
+        "operationId": "CrudsService_GetUnreadNotifications",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsListNotificationsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NOTIFICATION"
+        ]
+      }
+    },
+    "/v1/notifications/{id}": {
+      "delete": {
+        "summary": "Delete Notification",
+        "description": "Delete Notification",
+        "operationId": "CrudsService_DeleteNotification",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NOTIFICATION"
+        ]
+      }
+    },
+    "/v1/notifications/{id}/read": {
+      "put": {
+        "summary": "Mark Notification As Read",
+        "description": "Mark Notification As Read",
+        "operationId": "CrudsService_MarkNotificationAsRead",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NOTIFICATION"
+        ]
+      }
+    },
+    "/v1/notifications/{user_id}": {
+      "get": {
+        "summary": "Create Notification",
+        "description": "Create Notification",
+        "operationId": "CrudsService_GetAllNotificationsByUserId",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsListNotificationsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NOTIFICATION"
+        ]
+      }
+    },
+    "/v1/notifications_tokens": {
+      "post": {
+        "summary": "Register Notification Token",
+        "description": "Register Notification Token",
+        "operationId": "CrudsService_RegisterNotificationToken",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/crudsRegisterNotificationTokenRequest"
+            }
+          }
+        ],
+        "tags": [
+          "NOTIFICATION TOKENS"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/notifications_tokens/{token_id}": {
+      "delete": {
+        "summary": "Delete Notification Token",
+        "description": "Delete Notification Token",
+        "operationId": "CrudsService_DeleteNotificationToken",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "token_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NOTIFICATION TOKENS"
+        ]
+      }
+    },
+    "/v1/notifications_tokens/{user_id}": {
+      "get": {
+        "summary": "Get Notification Tokens By User",
+        "description": "Get Notification Tokens By User",
+        "operationId": "CrudsService_GetNotificationTokensByUserId",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsListNotificationTokensResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "NOTIFICATION TOKENS"
+        ]
+      }
+    },
+    "/v1/saved_cars": {
+      "post": {
+        "summary": "SAVE  CARS",
+        "description": "SAVE  CARS",
+        "operationId": "CrudsService_SaveCar",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/crudsSaveCarRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SAVED CARS"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/saved_cars/{car_id}": {
+      "delete": {
+        "summary": "Delete Saved Cars By Car Id",
+        "description": "Delete Saved Cars By Car Id",
+        "operationId": "CrudsService_DeleteSavedCarsByCarId",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "car_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "SAVED CARS"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/saved_cars/{id}": {
+      "delete": {
+        "summary": "Delete Saved Car",
+        "description": "Delete Saved Car",
+        "operationId": "CrudsService_DeleteSavedCar",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsEmpty"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "SAVED CARS"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/saved_cars/{user_id}": {
+      "get": {
+        "summary": "Get Saved Cars By User",
+        "description": "Get Saved Cars By User",
+        "operationId": "CrudsService_GetSavedCarsByUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/crudsListSavedCarsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "SAVED CARS"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "CrudsServiceUpdateCarBody": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "make": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "year": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "color": {
+          "type": "string"
+        },
+        "mileage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "price": {
+          "type": "number",
+          "format": "double"
+        },
+        "description": {
+          "type": "string"
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "location": {
+          "type": "string"
+        }
+      }
+    },
+    "CrudsServiceUpdateCommentBody": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string"
+        }
+      }
+    },
+    "crudsBoolCheck": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "boolean"
+        }
+      }
+    },
+    "crudsCar": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "make": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "year": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "color": {
+          "type": "string"
+        },
+        "mileage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "price": {
+          "type": "number",
+          "format": "double"
+        },
+        "description": {
+          "type": "string"
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "owner_id": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        },
+        "reviews_count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/crudsImage"
+          }
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
+    "crudsComment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "car_id": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
+    "crudsCreateCarRequest": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "make": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "year": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "color": {
+          "type": "string"
+        },
+        "mileage": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "price": {
+          "type": "number",
+          "format": "double"
+        },
+        "description": {
+          "type": "string"
+        },
+        "location": {
+          "type": "string"
+        }
+      }
+    },
+    "crudsCreateCommentRequest": {
+      "type": "object",
+      "properties": {
+        "car_id": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      },
+      "title": "comments struct"
+    },
+    "crudsCreateNotificationRequest": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "crudsEmpty": {
+      "type": "object"
+    },
+    "crudsGetMessageByUserAndIdRes": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "user_name": {
+          "type": "string"
+        },
+        "user_surname": {
+          "type": "string"
+        },
+        "is_user_online": {
+          "type": "boolean"
+        },
+        "is_user_typing": {
+          "type": "boolean"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/crudsMessage"
+          }
+        }
+      }
+    },
+    "crudsImage": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "filename": {
+          "type": "string"
+        },
+        "car_id": {
+          "type": "string"
+        },
+        "uploaded_at": {
+          "type": "string"
+        }
+      }
+    },
+    "crudsListCarsResponse": {
+      "type": "object",
+      "properties": {
+        "cars": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/crudsCar"
+          }
+        }
+      }
+    },
+    "crudsListCommentsResponse": {
+      "type": "object",
+      "properties": {
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/crudsComment"
+          }
+        }
+      }
+    },
+    "crudsListImagesResponse": {
+      "type": "object",
+      "properties": {
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/crudsImage"
+          }
+        }
+      }
+    },
+    "crudsListMessagesResponse": {
+      "type": "object",
+      "properties": {
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/crudsListMessagesResponsewithUserID"
+          }
+        }
+      }
+    },
+    "crudsListMessagesResponsewithUserID": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "string"
+        },
+        "user_name": {
+          "type": "string"
+        },
+        "user_surname": {
+          "type": "string"
+        },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/crudsMessage"
+          }
+        }
+      }
+    },
+    "crudsListNotificationTokensResponse": {
+      "type": "object",
+      "properties": {
+        "tokens": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/crudsNotificationToken"
+          }
+        }
+      }
+    },
+    "crudsListNotificationsResponse": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/crudsNotification"
+          }
+        }
+      }
+    },
+    "crudsListSavedCarsResponse": {
+      "type": "object",
+      "properties": {
+        "saved_cars": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/crudsSavedCar"
+          }
+        }
+      }
+    },
+    "crudsMessage": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "sender_id": {
+          "type": "string"
+        },
+        "recipient_id": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "read": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string"
+        }
+      }
+    },
+    "crudsNotification": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "seen": {
+          "type": "boolean"
+        },
+        "created_at": {
+          "type": "string"
+        }
+      }
+    },
+    "crudsNotificationToken": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "platform": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
+    "crudsRegisterNotificationTokenRequest": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "platform": {
+          "type": "string"
+        }
+      }
+    },
+    "crudsSaveCarRequest": {
+      "type": "object",
+      "properties": {
+        "car_id": {
+          "type": "string"
+        }
+      }
+    },
+    "crudsSavedCar": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "user_id": {
+          "type": "string"
+        },
+        "car_id": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string",
+          "title": "String formatda"
+        },
+        "updated_at": {
+          "type": "string",
+          "title": "String formatda"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "userGetUserResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "surname": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "birth_date": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "phone_number": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "photo": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "userLoginRes": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "userVoid": {
+      "type": "object"
+    }
+  },
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}
