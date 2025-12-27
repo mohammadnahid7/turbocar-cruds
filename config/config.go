@@ -62,8 +62,10 @@ func Load() *Config {
 			PDB_PASSWORD: cast.ToString(coalesce("PDB_PASSWORD", "3333")),
 		},
 		Server: ServerConfig{
-			CRUD_SERVICE: getPort("CRUD_SERVICE", "50051"),
-			CRUD_SERVER:  getPort("CRUD_SERVER", "8090"),
+			// gRPC service should use fixed port or CRUD_SERVICE env var (not Railway's PORT)
+			CRUD_SERVICE: getGRPCPort("CRUD_SERVICE", "50051"),
+			// HTTP server should use Railway's PORT if available
+			CRUD_SERVER:  getHTTPPort("CRUD_SERVER", "8090"),
 		},
 		Mongo: MongoDBConfig{
 			MDB_ADDRESS: cast.ToString(coalesce("MDB_ADDRESS", "mongodb://localhost:27017")),
@@ -86,13 +88,29 @@ func coalesce(key string, value interface{}) interface{} {
 	return value
 }
 
-// getPort returns the port with ":" prefix, checking PORT env var first (Railway compatibility)
-func getPort(envKey string, defaultPort string) string {
-	// Railway sets PORT environment variable
+// getHTTPPort returns the port for HTTP server, checking Railway's PORT env var first
+func getHTTPPort(envKey string, defaultPort string) string {
+	// Railway sets PORT environment variable - use it for HTTP server
 	if port := os.Getenv("PORT"); port != "" {
 		return ":" + port
 	}
 	// Check for custom env var
+	if port := os.Getenv(envKey); port != "" {
+		if port[0] != ':' {
+			return ":" + port
+		}
+		return port
+	}
+	// Return default with ":"
+	if defaultPort[0] != ':' {
+		return ":" + defaultPort
+	}
+	return defaultPort
+}
+
+// getGRPCPort returns the port for gRPC server (doesn't use Railway's PORT)
+func getGRPCPort(envKey string, defaultPort string) string {
+	// Check for custom env var (don't use Railway's PORT for gRPC)
 	if port := os.Getenv(envKey); port != "" {
 		if port[0] != ':' {
 			return ":" + port
